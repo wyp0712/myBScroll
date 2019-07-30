@@ -1,0 +1,145 @@
+@import './reset.scss';
+
+@function rem($font) {
+  @return $font / 37.5px * 1rem;
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: rem(16px);
+}
+
+.header {
+  width: 100%;
+  height: rem(45px);
+  background: lightcoral;
+  text-align: center;
+  line-height: rem(45px);
+  color: #fff;
+}
+
+.main {
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  position: relative;
+
+  .content-box {
+
+    // transform: translateY(-90px);
+    .sec {
+      width: 100%;
+      height: rem(150px);
+      border-radius: 4px;
+      margin-bottom: rem(5px);
+      background: lightseagreen;
+    }
+  }
+
+  .tip {
+    width: 100%;
+    height: rem(35px);
+    color: #fff;
+    background: #000;
+    opacity: 0;
+    text-align: center;
+    line-height: rem(35px);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all .5s;
+  }
+
+  .show-tip {
+    opacity: 0.6;
+  }
+
+  .top {
+    width: 100%;
+    height: rem(45px);
+    display: flex;
+    flex-direction: column;
+    font-size: rem(12px);
+    overflow: hidden;
+    height: 0;
+    transition: all .5s;
+    z-index: 2;
+
+    span {
+      // flex:1;
+      @extend %juzhong;
+    }
+
+    .loading {
+      // width: rem(20px);
+      height: rem(20px);
+      line-height: rem(20px);
+      transform-origin: center center;
+      animation: rotateStyle 1s linear infinite;
+    }
+
+    .iconfont {
+      font-size: rem(20px);
+    }
+
+    .font {
+      line-height: rem(25px);
+    }
+  }
+
+  .show {
+    height: rem(45px);
+    // opacity: 1;
+  }
+
+  .bottom {
+    width: 100%;
+    height: rem(45px);
+    background: lightblue;
+    span {
+      @extend %juzhong;
+    }
+    .bottom-loading {
+      height: rem(40px);
+      line-height: rem(40px);
+      transform-origin: center center;
+      animation: rotateStyle 1s linear infinite;
+    }
+    .iconfont {
+      font-size: rem(20px);
+    }
+    .bottom-font {
+      line-height: rem(25px);
+    }
+  }
+}
+
+@keyframes rotateStyle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.footer {
+  width: 100%;
+  height: rem(45px);
+  display: flex;
+  background: lightpink;
+
+  .item {
+    flex: 1;
+    @extend %juzhong;
+    flex-direction: column;
+  }
+}
