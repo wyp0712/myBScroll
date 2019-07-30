@@ -56,7 +56,6 @@
   <script src="./libs/ajax.js"></script>
   <script src="./libs/bscroll.js"></script>
   <script>
-
     function createData() {
       const arr = ['北京', '上海', '天津', '北京', '上海', '天津', '北京', '上海', '天津']
       return new Promise((resolve, reject) => {
@@ -68,19 +67,23 @@
       })
     }
 
-    function render(data) {
-      contentBox.innerHTML = data.map(item => {
+    function render(data, dir) {
+      const list = data.map(item => {
         return `<div class=sec>${item.county}</div>`
       }).join('')
+      if (dir === 'top') {
+        contentBox.innerHTML = list;
+      } else if (dir === 'bottom') {
+        contentBox.innerHTML += list;
+      }
     }
 
     createData().then((res) => {
       topDom.classList.remove('show')
       tip.classList.add('show-tip');
       tip.innerHTML = `词条君为您送上${res.length}条内容`
-      contentBox.innerHTML = res.map(item => {
-        return `<div class=sec>${item.county}</div>`
-      }).join('')
+
+      render(res, 'top')
       myBS.refresh()
       setTimeout(function () {
         tip.classList.remove('show-tip');
@@ -94,7 +97,7 @@
     var font = document.querySelector('.font')
     var bottomFont = document.querySelector('.bottom-font')
     var contentBox = document.querySelector('.content-box')
-    
+
     var myBS = new BScroll('.main', {
       probeType: 3,
       startY: 200
@@ -111,9 +114,7 @@
           topDom.classList.remove('show')
           tip.classList.add('show-tip');
           tip.innerHTML = `词条君为您送上${list.length}条内容`
-          contentBox.innerHTML = list.map(item => {
-            return `<div class=sec>${item.county}</div>`
-          }).join('')
+          render(list, 'top')
           myBS.refresh()
           setTimeout(function () {
             tip.classList.remove('show-tip');
@@ -131,9 +132,7 @@
       if (Math.abs(pos.y) >= Math.abs(myBS.maxScrollY) + 200 && flag) {
         flag = false;
         createData().then(list => {
-          contentBox.innerHTML += list.map(item => {
-            return `<div class=sec>${item.county}</div>`
-          }).join('')
+          render(list, 'bottom')
           myBS.refresh()
         })
       }

@@ -58,11 +58,9 @@
     top: 0;
     transition: all .5s;
   }
-
   .show-tip {
     opacity: 0.6;
   }
-
   .top {
     width: 100%;
     height: rem(45px);
@@ -73,24 +71,18 @@
     height: 0;
     transition: all .5s;
     z-index: 2;
-
     span {
-      // flex:1;
       @extend %juzhong;
     }
-
     .loading {
-      // width: rem(20px);
       height: rem(20px);
       line-height: rem(20px);
       transform-origin: center center;
       animation: rotateStyle 1s linear infinite;
     }
-
     .iconfont {
       font-size: rem(20px);
     }
-
     .font {
       line-height: rem(25px);
     }
@@ -98,13 +90,11 @@
 
   .show {
     height: rem(45px);
-    // opacity: 1;
   }
 
   .bottom {
     width: 100%;
     height: rem(45px);
-    background: lightblue;
     span {
       @extend %juzhong;
     }
@@ -138,7 +128,6 @@
   height: rem(45px);
   display: flex;
   background: lightpink;
-
   .item {
     flex: 1;
     @extend %juzhong;
