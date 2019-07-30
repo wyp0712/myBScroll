@@ -183,7 +183,7 @@ textarea {
 }
 
 /* 750-> 1rem = 100px  375-> 1rem = 50px */
-.content .top span, .content .bottom span, .footer .item {
+.content .top-title span, .content .bottom span, .footer .item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -247,7 +247,7 @@ textarea {
   opacity: 0.6;
 }
 
-.content .top {
+.content .top-title {
   width: 100%;
   height: 1.2rem;
   display: flex;
@@ -259,18 +259,18 @@ textarea {
   z-index: 2;
 }
 
-.content .top .loading {
+.content .top-title .loading {
   height: 0.53333rem;
   line-height: 0.53333rem;
   transform-origin: center center;
   animation: rotateStyle 1s linear infinite;
 }
 
-.content .top .iconfont {
+.content .top-title .iconfont {
   font-size: 0.53333rem;
 }
 
-.content .top .font {
+.content .top-title .font {
   line-height: 0.66667rem;
 }
 
