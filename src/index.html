@@ -53,18 +53,40 @@
 
 
 
+  <script src="./libs/ajax.js"></script>
   <script src="./libs/bscroll.js"></script>
   <script>
 
     function createData() {
       const arr = ['北京', '上海', '天津', '北京', '上海', '天津', '北京', '上海', '天津']
       return new Promise((resolve, reject) => {
-        setTimeout(function () {
-          resolve(arr)
-        }, 2000)
+        ajax('./mock/data.json', (res) => {
+          setTimeout(function () {
+            resolve(res)
+          }, 2000)
+        })
       })
     }
-    
+
+    function render(data) {
+      contentBox.innerHTML = data.map(item => {
+        return `<div class=sec>${item.county}</div>`
+      }).join('')
+    }
+
+    createData().then((res) => {
+      topDom.classList.remove('show')
+      tip.classList.add('show-tip');
+      tip.innerHTML = `词条君为您送上${res.length}条内容`
+      contentBox.innerHTML = res.map(item => {
+        return `<div class=sec>${item.county}</div>`
+      }).join('')
+      myBS.refresh()
+      setTimeout(function () {
+        tip.classList.remove('show-tip');
+      }, 1000)
+    })
+
     var topDom = document.querySelector('.top')
     var bottomLoading = document.querySelector('.bottom-loading')
     var bottom = document.querySelector('.bottom')
@@ -72,11 +94,14 @@
     var font = document.querySelector('.font')
     var bottomFont = document.querySelector('.bottom-font')
     var contentBox = document.querySelector('.content-box')
+    
     var myBS = new BScroll('.main', {
       probeType: 3,
+      startY: 200
     })
-    var flag = true;
 
+    var flag = true;
+    // 下拉刷新
     myBS.on('touchEnd', (pos) => {
       flag = true;
       font.innerHTML = '下拉开始刷新';
@@ -87,7 +112,7 @@
           tip.classList.add('show-tip');
           tip.innerHTML = `词条君为您送上${list.length}条内容`
           contentBox.innerHTML = list.map(item => {
-            return `<div class=sec>${item}</div>`
+            return `<div class=sec>${item.county}</div>`
           }).join('')
           myBS.refresh()
           setTimeout(function () {
@@ -96,6 +121,8 @@
         })
       }
     })
+
+    // 上拉加载
     myBS.on('scroll', (pos) => {
       if (pos.y > 100) {
         topDom.classList.add('show')
@@ -105,7 +132,7 @@
         flag = false;
         createData().then(list => {
           contentBox.innerHTML += list.map(item => {
-            return `<div class=sec>${item}</div>`
+            return `<div class=sec>${item.county}</div>`
           }).join('')
           myBS.refresh()
         })

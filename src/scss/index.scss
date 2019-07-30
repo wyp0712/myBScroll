@@ -32,14 +32,16 @@
   position: relative;
 
   .content-box {
-
-    // transform: translateY(-90px);
     .sec {
       width: 100%;
       height: rem(150px);
       border-radius: 4px;
       margin-bottom: rem(5px);
       background: lightseagreen;
+      text-align: center;
+      line-height: rem(150px);
+      color: #fff;
+      font-size: 50px;
     }
   }
 

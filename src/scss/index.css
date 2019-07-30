@@ -223,6 +223,10 @@ textarea {
   border-radius: 4px;
   margin-bottom: 0.13333rem;
   background: lightseagreen;
+  text-align: center;
+  line-height: 4rem;
+  color: #fff;
+  font-size: 50px;
 }
 
 .content .tip {
